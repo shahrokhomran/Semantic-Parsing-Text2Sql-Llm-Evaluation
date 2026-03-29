@@ -1,1 +1,6 @@
+Convert the following natural language question into SQL.
+Only output a valid SQL query starting with SELECT.
 
+Question: {question}
+SQL:
+"""
