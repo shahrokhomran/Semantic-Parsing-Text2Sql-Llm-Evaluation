@@ -1,1 +1,55 @@
+Overview
 
+This project evaluates the performance of transformer-based models (Flan-T5 and Falcon) in a zero-shot Text-to-SQL task. The goal is to assess how well these models can translate natural language questions into executable SQL queries without any task-specific training.
+
+Summary of Results
+
+Model	    Exact Match (%)	    Soft Match (%)	  Execution Validity (%)
+Flan-T5	  0.0	                100.0	            20.0
+Falcon	  0.0	                100.0	            98.0
+
+Metric-wise Analysis
+
+1. Exact Match (0% for both models)
+
+Exact match requires the generated SQL query to be identical to the ground truth query.
+Both models scored 0%, indicating that neither produced queries that exactly matched the reference SQL.
+This is expected in zero-shot settings, where models are not fine-tuned for the specific dataset.
+Exact match is a very strict metric and often underestimates model capability.
+
+2. Soft Match (100% for both models)
+
+Soft match evaluates partial similarity between generated and reference queries.
+Both models achieved 100%, indicating strong semantic understanding.
+This suggests that both models correctly interpret the intent of the natural language queries.
+However, this metric is overly lenient and does not guarantee correctness or usability.
+
+3. Execution Validity (Key Metric)
+Flan-T5: 20%
+Falcon: 98%
+Execution validity measures whether the generated SQL query is syntactically correct and executable.
+
+Interpretation:
+
+Flan-T5 often produces incomplete or invalid SQL queries.
+Falcon consistently generates well-structured and executable SQL.
+
+This demonstrates that Falcon is significantly more reliable in practical applications.
+
+Key Insights
+
+Both models understand natural language queries well (high soft match).
+Exact match is too strict for zero-shot evaluation.
+Execution validity is the most meaningful metric in this project.
+Falcon clearly outperforms Flan-T5 in generating usable SQL queries.
+
+Limitations
+
+Execution validity does not guarantee correct results, only syntactic correctness.
+Soft match may overestimate performance due to its lenient nature.
+The dataset size is limited (subset of Spider dataset).
+No execution accuracy was computed due to lack of database environment.
+
+Conclusion
+
+Although both models demonstrate strong semantic understanding, Falcon significantly outperforms Flan-T5 in generating executable SQL queries. This makes Falcon a more suitable choice for real-world zero-shot Text-to-SQL applications.
